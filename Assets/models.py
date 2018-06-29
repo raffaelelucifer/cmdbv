@@ -12,7 +12,18 @@ class Product(models.Model):
         verbose_name="产品线"
 
 class Project(models.Model):
-    project_name = models.CharField(amx_length=100, varbose_name="项目名")
+    name = models.CharField(max_length=100, verbose_name="项目名")
+    slug = models.CharField(max_length=100, blank=True, null=True, verbose_name="别名")
+    product_name = models.ForeignKey(Product, verbose_name="所属产品线")
+    pm = models.CharField(max_length=30, verbose_name="项目负责人")
+    telephone = models.CharField(max_length=11, verbose_name="联系方式")
+    desc = models.TextField(verbose_name="项目描述")
+
+    def __unicode__(self):
+        return self.name
+
+    def meta:
+        verbose_name="项目名称"
     
 
 class Server(models.Model):
