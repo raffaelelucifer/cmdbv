@@ -1,0 +1,76 @@
+#_*_ coding: utf-8 _*_
+from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
+import sys
+ 
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+SERVICE_BOOL_CHOICES = ((True, u"启动"), (False, u"停止"))
+SERVER_BRAND = (
+    (0, u'阿里'),
+    (1, u'腾讯'),
+    (2, u'华为'),
+    (3, u'亚马逊'),
+)
+
+@python_2_unicode_compatible
+class Product(models.Model):
+    name = models.CharField(max_length=100, verbose_name=u"产品线")
+    #desc = models.TextField(verbose_name=u"产品简介")
+    slug = models.CharField(max_length=100, blank=True, null=True, verbose_name=u"别名")
+
+    def __str__(self):
+        return self.name
+
+@python_2_unicode_compatible
+class Project(models.Model):
+    name = models.CharField(max_length=100, verbose_name=u"项目名")
+    slug = models.CharField(max_length=100, blank=True, null=True, verbose_name=u"别名")
+    product_name = models.ForeignKey(Product, verbose_name=u"所属产品线")
+    pm = models.CharField(max_length=30, verbose_name=u"项目负责人")
+    telephone = models.CharField(max_length=11, verbose_name=u"联系方式")
+    git_url = models.URLField(max_length=200, verbose_name=u"代码仓库路径")
+    #desc = models.TextField(verbose_name=u"项目描述")
+
+    def __str__(self):
+        return self.name
+
+@python_2_unicode_compatible
+class Server(models.Model):
+    name = models.CharField(max_length=100, verbose_name=u"服务器名")
+    ipaddress = models.CharField(max_length=30, null=False, verbose_name=u"IP地址")
+    mac = models.CharField(max_length=30, blank=True, null=True, verbose_name=u"mac地址")
+    project_name = models.ManyToManyField(Project, null=False, verbose_name=u"所属项目")
+    brand = models.IntegerField(choices=SERVER_BRAND, verbose_name=u"服务器品牌")
+    CPU = models.CharField(max_length=30, verbose_name=u"CPU配置")
+    memcache = models.CharField(max_length=10, blank=False, null=False, verbose_name=u"内存")
+    space = models.CharField(max_length=10, blank=False, null=False, verbose_name=u"存储空间")
+    
+    def __str__(self):
+        return self.name
+
+@python_2_unicode_compatible
+class Service(models.Model):
+    name = models.CharField(max_length=50, verbose_name=u"服务名")
+    server_name = models.ForeignKey(Server, verbose_name=u"主机名")
+    ipaddress = models.CharField(max_length=50, verbose_name=u"主机地址")
+    status = models.IntegerField(choices=SERVICE_BOOL_CHOICES, verbose_name=u"服务状态")    
+
+    def __str__(self):
+        return self.name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
