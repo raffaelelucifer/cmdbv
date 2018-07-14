@@ -1,0 +1,45 @@
+<!-- index.html {cmdbv project} -->
+{% extends "base.html" %}
+{% block title %}风炎自动化运维平台{% endblock %}
+{% block content %}
+<div class='container'>
+{% for message in messages %}
+    <div class='alert alert-{{message.tags}}'>{{ message }}</div>
+{% endfor %}
+<div class='row'>
+    <div class='col-md-12'>
+        <div class='panel panel-default'>
+            <div class='panel-heading' align=center>
+                <h3>欢迎使用风炎自动化运维平台/h3>
+                {% if user.is_authenticated %}
+                    {% if user.socialaccount_set.all.0.extra_data.name %}
+                        {{ user.socialaccount_set.all.0.extra_data.name }}<br/>
+                        <img src='{{ user.socialaccount_set.all.0.get_avatar.url }}' width='100'>
+                    {% else %}
+                        Welcome: {{ user.username }}
+                    {% endif %}
+                {% else %}
+                    <p>欢迎使用GitHub或者Twitter注册/登录您的账号才能进入该网站</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class='row'>
+{% load account %}
+    <div class='col-xs-3 col-sm-3 col-md-3'>
+        <div class='thumbnail'>
+            <div class='caption'>
+                <h3>资产管理</h3>
+                <a href="/assets">>>进入</a>
+                <h3>自动化发布</h3>
+                <a href="#">>>进入</a>
+                <h3>日志审计</h3>
+                <a href="#">>>进入</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

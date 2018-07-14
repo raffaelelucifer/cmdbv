@@ -1,0 +1,98 @@
+<!-- header.html -->
+    <nav class='navbar navbar-default'>
+        <div class='container-fluid'>
+            <div class='navbar-header'>
+                <div class='navbar-brand' align=center>
+                    风炎自动化运维
+                </div>
+            </div>
+            {% load account %}
+            <ul class='nav navbar-nav'>
+                <li class='active'><a href='/'>Home</a></li>
+                <!--li class='dropdown'>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href='#'>
+                    产品<span class='caret'></span></a>
+                    <ul class="dropdown-menu">
+                        {% for cate in allcategories %}
+                        <li><a href='/{{ cate.id }}'>{{ cate.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li-->
+                {% if user.is_authenticated %}
+                <!--<li><a href='/userinfo'>个人资料</a></li>
+                <li><a href='/post'>写日记</a></li>
+                <li><a href='/contact'>联络管理员</a></li>-->
+                <!--li><a href='/cart/'>查看购物车</a></li>
+                <li><a href="{% url 'account_reset_password' %}">重置密码</a></li>
+                <li><a href="{% url 'account_email' %}">变更电子邮件</a></li>
+                <li><a href="{% url 'account_logout' %}">注销</a></li>
+                {% else %}
+                <li><a href="{% url 'account_login' %}">登录</a></li>
+                <li><a href="{% url 'account_signup' %}">注册</a></li>
+                {% endif %}
+                <li><a href='/admin'>后台管理</a></li-->
+                <li class='dropdown'>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href='#'>
+                    产品线管理<span class='carset'></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">添加产品线</a></li>
+                        <li><a href="#">查看产品线</a></li>
+                    <ul>
+                </li>
+                <li class='dropdown'>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href='#'>
+                    项目管理<span class='carset'></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">添加项目</a></li>
+                        <li><a href="#">查看项目</a></li>
+                    <ul>
+                </li>
+                <li class='dropdown'>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href='#'>
+                    主机管理<span class='carset'></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">添加主机</a></li>
+                        <li><a href="#">批量添加主机</a></li>
+                        <li><a href="#">查看主机</a></li>
+                    <ul>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Bootstrap 实例 - 带有下拉菜单的标签页</title>
+   <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+   <script src="//cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+   <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<p>带有下拉菜单的标签页</p>
+<ul class="nav nav-tabs">
+   <li class="active"><a href="#">Home</a></li>
+   <li><a href="#">SVN</a></li>
+   <li><a href="#">iOS</a></li>
+   <li><a href="#">VB.Net</a></li>
+   <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+         Java <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+         <li><a href="#">Swing</a></li>
+         <li><a href="#">jMeter</a></li>
+         <li><a href="#">EJB</a></li>
+         <li class="divider"></li>
+         <li><a href="#">分离的链接</a></li>
+      </ul>
+   </li>
+   <li><a href="#">PHP</a></li>
+</ul>
+
+</body>
+</html>
+

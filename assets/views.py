@@ -8,7 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
 
 def index(request):
-    template = get_template('assets/index.html')
+    template = get_template('index.html')
     request_context = RequestContext(request)
     request_context.push(locals())
     html = template.render(request_context)
